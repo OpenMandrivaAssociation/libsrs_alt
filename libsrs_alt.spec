@@ -1,10 +1,11 @@
-%define	major 0
-%define libname	%mklibname srs_alt %{major}
+%define major 0
+%define libname %mklibname srs_alt %{major}
+%define develname %mklibname srs_alt -d
 
 Summary:	A C implementation of SRS
 Name:		libsrs_alt
 Version:	0.5
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	GPL
 Group:		System/Libraries
 URL:		http://srs.mirtol.com/
@@ -45,13 +46,15 @@ Features:
  o SRS Compliant
  o Automake/autoconf package 
 
-%package -n	%{libname}-devel
+%package -n	%{develname}
 Summary:	Development tools needed to build programs that use the %{name} library
 Group:		Development/C
 Requires:	%{libname} = %{version}
-Provides:	libsrs_alt-devel srs_alt-devel
+Provides:	%{name}-devel = %{version}-%{release}
+Provides:	srs_alt-devel = %{version}-%{release}
+Obsoletes:	%{mklibname srs_alt 0 -d}
 
-%description -n	%{libname}-devel
+%description -n	%{develname}
 libsrs_alt is a C implementation of SRS (Sender Rewriting Scheme)
 
 This package contains development files needed to compile softwares
@@ -93,7 +96,7 @@ mv %{buildroot}%{_bindir}/srs %{buildroot}%{_bindir}/srs_alt
 %doc ChangeLog
 %{_libdir}/lib*.so.*
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %{_libdir}/*.a
 %{_libdir}/*.la
@@ -103,5 +106,3 @@ mv %{buildroot}%{_bindir}/srs %{buildroot}%{_bindir}/srs_alt
 %files -n %{name}-utils
 %defattr(-,root,root)
 %{_bindir}/srs_alt
-
-
