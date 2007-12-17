@@ -12,7 +12,6 @@ URL:		http://srs.mirtol.com/
 Source0:	http://srs.mirtol.com/%{name}-%{version}.tar.bz2
 BuildRequires:	autoconf2.5
 BuildRequires:	libtool
-BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 libsrs_alt is a C implementation of SRS (Sender Rewriting Scheme)
