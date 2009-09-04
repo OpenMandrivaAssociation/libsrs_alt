@@ -5,7 +5,7 @@
 Summary:	A C implementation of SRS
 Name:		libsrs_alt
 Version:	0.5
-Release:	%mkrel 5
+Release:	%mkrel 6
 License:	GPL
 Group:		System/Libraries
 URL:		http://srs.mirtol.com/
