@@ -5,14 +5,13 @@
 Summary:	A C implementation of SRS
 Name:		libsrs_alt
 Version:	0.5
-Release:	%mkrel 7
+Release:	8
 License:	GPL
 Group:		System/Libraries
 URL:		http://srs.mirtol.com/
 Source0:	http://srs.mirtol.com/%{name}-%{version}.tar.bz2
 BuildRequires:	autoconf2.5
 BuildRequires:	libtool
-BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 libsrs_alt is a C implementation of SRS (Sender Rewriting Scheme)
@@ -50,8 +49,8 @@ Features:
 Summary:	Development tools needed to build programs that use the %{name} library
 Group:		Development/C
 Requires:	%{libname} = %{version}
-Provides:	%{name}-devel = %{version}-%{release}
-Provides:	srs_alt-devel = %{version}-%{release}
+Provides:	%{name}-devel = %{EVRD}
+Provides:	srs_alt-devel = %{EVRD}
 Obsoletes:	%{mklibname srs_alt 0 -d}
 
 %description -n	%{develname}
@@ -78,35 +77,58 @@ Command line interface to %{name}
 make
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
-
 %makeinstall_std
 
 mv %{buildroot}%{_bindir}/srs %{buildroot}%{_bindir}/srs_alt
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
-%clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
-
 %files -n %{libname}
-%defattr(-,root,root)
 %doc ChangeLog
 %{_libdir}/lib*.so.*
 
 %files -n %{develname}
-%defattr(-,root,root)
 %{_libdir}/*.a
-%{_libdir}/*.la
 %{_libdir}/*.so
 %{_includedir}/*.h
 
 %files -n %{name}-utils
-%defattr(-,root,root)
 %{_bindir}/srs_alt
+
+
+%changelog
+* Fri Dec 10 2010 Oden Eriksson <oeriksson@mandriva.com> 0.5-7mdv2011.0
++ Revision: 620228
+- the mass rebuild of 2010.0 packages
+
+* Fri Sep 04 2009 Thierry Vignaud <tv@mandriva.org> 0.5-6mdv2010.0
++ Revision: 429833
+- rebuild
+
+* Sun Jul 27 2008 Thierry Vignaud <tv@mandriva.org> 0.5-5mdv2009.0
++ Revision: 250580
+- rebuild
+
+  + Pixel <pixel@mandriva.com>
+    - do not call ldconfig in %%post/%%postun, it is now handled by filetriggers
+
+* Fri Dec 21 2007 Olivier Blin <oblin@mandriva.com> 0.5-3mdv2008.1
++ Revision: 136566
+- restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Sun Sep 09 2007 Oden Eriksson <oeriksson@mandriva.com> 0.5-3mdv2008.0
++ Revision: 83773
+- new devel naming
+
+
+* Fri Dec 08 2006 Oden Eriksson <oeriksson@mandriva.com> 0.5-2mdv2007.0
++ Revision: 93739
+- Import libsrs_alt
+
+* Sat Apr 29 2006 Oden Eriksson <oeriksson@mandriva.com> 0.5-2mdk
+- rebuild
+
+* Thu Mar 31 2005 Oden Eriksson <oeriksson@mandrakesoft.com> 0.5-1mdk
+- initial package
+
