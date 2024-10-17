@@ -8,7 +8,7 @@ Version:	0.5
 Release:	9
 License:	GPL
 Group:		System/Libraries
-URL:		http://srs.mirtol.com/
+URL:		https://srs.mirtol.com/
 Source0:	http://srs.mirtol.com/%{name}-%{version}.tar.bz2
 BuildRequires:	autoconf2.5
 BuildRequires:	libtool
